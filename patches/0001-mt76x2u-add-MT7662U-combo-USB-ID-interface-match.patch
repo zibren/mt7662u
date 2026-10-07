@@ -1,0 +1,12 @@
+diff --git a/mt76x2/usb.c b/mt76x2/usb.c
+index 01cb3b28..927884f6 100644
+--- a/mt76x2/usb.c
++++ b/mt76x2/usb.c
+@@ -25,6 +25,7 @@ static const struct usb_device_id mt76x2u_device_table[] = {
+ 	{ USB_DEVICE(0x045e, 0x02e6) },	/* XBox One Wireless Adapter */
+ 	{ USB_DEVICE(0x045e, 0x02fe) },	/* XBox One Wireless Adapter */
+ 	{ USB_DEVICE(0x2357, 0x0137) },	/* TP-Link TL-WDN6200 */
++	{ USB_DEVICE_AND_INTERFACE_INFO(0x0e8d, 0x7662, 0xff, 0xff, 0xff) },	/* MT7662U combo: WiFi on vendor-specific intf, BT on e0 intfs */
+ 	{ },
+ };
+ 

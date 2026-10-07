@@ -1,0 +1,54 @@
+diff --git a/mt76.h b/mt76.h
+index 273f38e2..e2e96157 100644
+--- a/mt76.h
++++ b/mt76.h
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (C) 2016 Felix Fietkau <nbd@nbd.name>
+  */
+-
++#include <linux/version.h>
+ #ifndef __MT76_H
+ #define __MT76_H
+ 
+diff --git a/mt76x02_eeprom.c b/mt76x02_eeprom.c
+index 2a15bd2c..d16be0cb 100644
+--- a/mt76x02_eeprom.c
++++ b/mt76x02_eeprom.c
+@@ -4,7 +4,7 @@
+  * Copyright (C) 2018 Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>
+  */
+ 
+-#include <asm/unaligned.h>
++#include <linux/unaligned.h>
+ 
+ #include "mt76x02_eeprom.h"
+ 
+diff --git a/mt76x02_usb_core.c b/mt76x02_usb_core.c
+index c94c2f66..4ca311d5 100644
+--- a/mt76x02_usb_core.c
++++ b/mt76x02_usb_core.c
+@@ -264,8 +264,8 @@ void mt76x02u_init_beacon_config(struct mt76x02_dev *dev)
+ 	};
+ 	dev->beacon_ops = &beacon_ops;
+ 
+-	hrtimer_init(&dev->pre_tbtt_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+-	dev->pre_tbtt_timer.function = mt76x02u_pre_tbtt_interrupt;
++	hrtimer_setup(&dev->pre_tbtt_timer, mt76x02u_pre_tbtt_interrupt,
++		      CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+ 	INIT_WORK(&dev->pre_tbtt_work, mt76x02u_pre_tbtt_work);
+ 
+ 	mt76x02_init_beacon_config(dev);
+diff --git a/mt76x2/eeprom.c b/mt76x2/eeprom.c
+index e1e317ad..782813aa 100644
+--- a/mt76x2/eeprom.c
++++ b/mt76x2/eeprom.c
+@@ -5,7 +5,7 @@
+ 
+ #include <linux/module.h>
+ #include <linux/of.h>
+-#include <asm/unaligned.h>
++#include <linux/unaligned.h>
+ #include "mt76x2.h"
+ #include "eeprom.h"
+ 
